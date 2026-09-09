@@ -2,7 +2,7 @@ let database = []
 
 async function saveCar() {
   await wait()
-  const car = { carId: 'V123', brand: 'BMW', model: 'X1', registrationNumber: '211-C-99999', mileage: 100, isOn: false }
+  const car = {brand, model, registrationNumber, mileage}
   database.push(car)
 }
 
