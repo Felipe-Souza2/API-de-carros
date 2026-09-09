@@ -2,7 +2,7 @@ let database = []
 
 async function saveCar() {
   await wait()
-  const car = {brand, model, registrationNumber, mileage}
+  const car = { carId: 'V123', brand: 'BMW', model: 'X1', registrationNumber: '211-C-99999', mileage: 100, isOn: false }
   database.push(car)
 }
 
@@ -30,6 +30,6 @@ async function deleteCar(carId) {
   carDatabase = database.filter((data) => data.carId !== carId)
 }
 
-export async function wait(duration: number = 0) {
+/* export async function wait(duration: Number = 0) {
   return new Promise((resolve) => setTimeout(resolve, duration));
-}
+}*/
