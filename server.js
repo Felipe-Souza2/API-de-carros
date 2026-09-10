@@ -11,7 +11,7 @@ app.post('/', (req, res) => {
 })
 
 app.get('/', (req, res) => {  //rota de recebimento de dados 
-   res.json(database)
+  //  res.json(database)
    res.status(200).json(database)  //status (200) 'td ok'      
 });
 app.delete('/' , (req,res) => {
