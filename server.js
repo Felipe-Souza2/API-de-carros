@@ -5,15 +5,13 @@ const prisma = new PrismaClient()
 const app = express();
 app.use(express.json()) // para que o arquivo entenda que esta recebendo arquivos em JSON
 
-
 app.post('/', async (req, res) => {
   await prisma.car.create({
      data: {
       brand: req.body.brand,
       model: req.body.model,
       registrationNumber: req.body.registrationNumber,
-      mileage: req.body.mileage
-
+      mileage: req.body.mileag
      }
   })
    res.status(201).json(req.body)    //status 201 td ok e foi criada sua  requisicao
@@ -34,7 +32,6 @@ app.put('/:id', async (req, res) => { // para por variaveis dentro da rota nomei
       model: req.body.model,
       registrationNumber: req.body.registrationNumber,
       mileage: req.body.mileage
-
      }
   })
    res.status(201).json(req.body)    //status 201 td ok e foi criada sua  requisicao
