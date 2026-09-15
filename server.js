@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json()) // para que o arquivo entenda que esta recebendo arquivos em JSON
 
 app.post('/new_vehicles/', async (req, res) => {
-  createCar(req.body.brand, req.body.model, req.body.registrationNumber, req.body.mileage, req.body.isOn)
+  createCar(req.body.brand, req.body.model, req.body.registrationNumber, req.body.mileage, req.body.isOn) //aqui impota a funcao do arqivo function que utiliza as validacoes
   await prisma.car.create({
      data: {
       brand: req.body.brand,
@@ -21,7 +21,7 @@ app.post('/new_vehicles/', async (req, res) => {
   res.status(201).json(req.body)    //status 201 td ok e foi criada sua  requisicao
 })
 
-app.get('/new_vehicles/', async (req, res) => {  //rota de recebimento de dados 
+app.get('/new_vehicles/', async (req, res) => {  //rota de recebimento de dados/listagem 
   const cars = await prisma.car.findMany()
   res.status(200).json(cars)  //status (200) 'td ok'      
 });
@@ -42,16 +42,16 @@ app.put('/new_vehicles/:id', async (req, res) => { // para por variaveis dentro 
    res.status(200).json(req.body)    //status 201 td ok e foi criada sua  requisicao
 })
 
-app.patch('/new_vehicles/:id', async (req, res) =>{
-  driveCar(req.body.distance)
-  const car = await prisma.car.findUnique({
+app.patch('/new_vehicles/:id', async (req, res) =>{  
+driveCar(req.body.distance)
+const car = await prisma.car.findUnique({
     where: {
       id: req.params.id
     }
   })
   if (car === null) return res.status(404).json({message: "Carro não encontrado"})
   if (car.isOn === false) return res.status(409).json({message: "Carro precisa estar ligado"})
-  const updatedCar = await prisma.car.update({
+  const updatedCar = await prisma.car.update({      //aqui vai procurar o carro ver se existe e se esta ligado,se existir e estiver ligado vai "andar" adicionando km na mileagem total
      where: {
       id: req.params.id
     },
@@ -69,7 +69,7 @@ app.patch('/new_vehicles/:id/turn_on', async (req, res) => {
     }
   })
   if (car === null) return res.status(404).json({message: "Carro não encontrado"})
-    const updatedCar = await prisma.car.update({
+    const updatedCar = await prisma.car.update({    //aqui onde vai ligar o carro nessa url //new_vehicles/o id do carro/turn_on
       where: {
         id: req.params.id
       },
@@ -87,7 +87,7 @@ app.patch('/new_vehicles/:id/turn_off', async (req, res) => {
     }
   })
   if (car === null) return res.status(404).json({message: "Carro não encontrado"})
-    const updatedCar = await prisma.car.update({
+    const updatedCar = await prisma.car.update({          //aqui onde vai desligar o carro nessa url //new_vehicles/o id do carro/turn_off
       where: {
         id: req.params.id
       },
@@ -101,7 +101,7 @@ app.patch('/new_vehicles/:id/turn_off', async (req, res) => {
 app.delete('/new_vehicles/:id', async (req,res) => {
   await prisma.car.delete ({
     where: {
-      id: req.params.id
+      id: req.params.id           //aqui vai deletar
     },
   })
   res.status(200).json({message: "Carro Deletado"})
