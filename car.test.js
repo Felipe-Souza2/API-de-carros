@@ -1,34 +1,48 @@
 import assert from "node:assert"
 import test from "node:test"
 
-import {isMileageInvalid, isOnInvalid, isRegistrationNumberInvalid} from "./validation.js";
+import {isMileageInvalid, isOnInvalid, isRegistrationNumberInvalid, isDistanceInvalid} from "./validation.js";
 
-test(" deve verificar se a mileagem é invalida", () => {
+test("deve verificar se a mileagem é invalida", () => {
   assert.equal(isMileageInvalid(-12),true)
   assert.equal(isMileageInvalid(12.7),true)
   assert.equal(isMileageInvalid('doze'),true)
   assert.equal(isMileageInvalid(''),true)
 })
 
-test(" deve verificar se a mileagem é valida", () => {
+test("deve verificar se a mileagem é valida", () => {
   assert.equal(isMileageInvalid(12),false)
   assert.equal(isMileageInvalid(120),false)
   assert.equal(isMileageInvalid(0),false)
   assert.equal(isMileageInvalid(10000),false)
- 
 })
-test (" deve verificar se não recebe boolean", () => {
+
+test("deve verificar se a distancia é Invalida", () => {
+  assert.equal(isDistanceInvalid(-100), true)
+  assert.equal(isDistanceInvalid(0), true)
+  assert.equal(isDistanceInvalid('35'), true)
+  assert.equal(isDistanceInvalid(30.6), true)
+  assert.equal(isDistanceInvalid(''), true)
+})
+
+test("deve verificar se a distancia é Valida", () => {
+  assert.equal(isDistanceInvalid(100),false)
+  assert.equal(isDistanceInvalid(100000),false)
+  assert.equal(isDistanceInvalid(1),false)
+})
+
+test ("deve verificar se não recebe boolean", () => {
   assert.equal(isOnInvalid('dois'),true)
   assert.equal(isOnInvalid('ligado'),true)
   assert.equal(isOnInvalid(100),true)
 })
 
-test (" deve verificar se recebe boolean", () => {
+test ("deve verificar se recebe boolean", () => {
   assert.deepEqual(isOnInvalid(false),false)
   assert.deepEqual(isOnInvalid(true),false)
 })
 
-test (" deve verificar se recebe um registration Number Invalido", () => {
+test ("deve verificar se recebe um registration Number Invalido", () => {
   assert.equal(isRegistrationNumberInvalid(''),true)
   assert.equal(isRegistrationNumberInvalid(12345),true)
   assert.equal(isRegistrationNumberInvalid('261--12345'),true)
@@ -43,7 +57,7 @@ test (" deve verificar se recebe um registration Number Invalido", () => {
   assert.equal(isRegistrationNumberInvalid('222-WH-123456'),true)
 })
 
-test (" deve verificar se recebe um registration Number valido", () => {
+test ("deve verificar se recebe um registration Number valido", () => {
   assert.equal(isRegistrationNumberInvalid('261-W-12345'),false)
   assert.equal(isRegistrationNumberInvalid('262-RN-12345'),false)
   assert.equal(isRegistrationNumberInvalid('122-C-12345'),false)

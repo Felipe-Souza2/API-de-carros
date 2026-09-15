@@ -13,6 +13,12 @@ export function isMileageInvalid(mileage) {
   if (mileage < 0 || !Number.isInteger(mileage) ) return true
   return false
 }
+
+export function isDistanceInvalid(distance) {
+  if (distance <= 0 || !Number.isInteger(distance)) return true
+  return false
+}
+
 export function isOnInvalid(isOn) {
   if (typeof isOn !== "boolean") return true
   return false
