@@ -14,7 +14,6 @@ export function createCar(brand, model, registrationNumber, mileage, isOn) {
 }
 
 export function driveCar(distance) {
-  
   if (isDistanceInvalid(distance)) {
      throw new Error('distancia Invalida')
    }

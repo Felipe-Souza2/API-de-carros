@@ -1,3 +1,5 @@
+
+
 const irishCounty = new Set([
   "C", "CE", "CN", "CW", "D", "DL", "G",
   "KE", "KK", "KY", "L", "LD", "LH", "LM", "LS",
@@ -24,9 +26,9 @@ export function isOnInvalid(isOn) {
   return false
 }
  export function isRegistrationNumberInvalid(registrationNumber) {
-   if (typeof registrationNumber !== "string"|| registrationNumber === '') return true
-   const parts = registrationNumber.split('-')
-   const digits = '0123456789'
+  if (typeof registrationNumber !== "string"|| registrationNumber === '') return true
+  const parts = registrationNumber.split('-')
+  const digits = '0123456789'
   if (parts.length !== SIZE_PLATES) return true
   if (parts.includes('')) return true
   if (parts[0].length !== SIZE_PLATES) return true
@@ -35,9 +37,9 @@ export function isOnInvalid(isOn) {
   if (!irishCounty.has(parts[1])) return true
   for (const character of parts[2]) {
   if (!digits.includes(character)) return true
-}
-if (parts[2].length > MAX_LENGTH) return true
-return false
+  }
+  if (parts[2].length > MAX_LENGTH) return true
+  return false
 }
 
 
