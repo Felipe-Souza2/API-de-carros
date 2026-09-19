@@ -1,0 +1,26 @@
+info:
+  name: create
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:51620/new_vehicles
+  body:
+    type: json
+    data: |-
+      {
+        "brand": "audi",
+        "model": "Q7",
+        "registrationNumber": "262-WH-12345",
+        "mileage": 0,
+        "isOn": false
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
